@@ -1,4 +1,4 @@
--- Creat tables for CSV import
+-- Creat 6 tables for CSV import
 
 -- Create departments table 
 
@@ -28,3 +28,53 @@ CREATE TABLE employees (
 
 select * from employees
 
+--Create salaries table
+
+DROP TABLE salaries
+
+CREATE TABLE salaries (
+	emp_no INT NOT NULL,
+	salary INT NOT NULL,
+	FOREIGN KEY(emp_no) REFERENCES employees(emp_no)
+);
+
+select * from salaries
+
+--Create dept_emp table 
+
+DROP TABLE dept_emp
+
+CREATE TABLE dept_emp (
+	emp_no INT NOT NULL,
+	dept_no VARCHAR(10) NOT NULL,
+	FOREIGN KEY (emp_no) REFERENCES employees(emp_no),
+    FOREIGN KEY (dept_no) REFERENCES departments(dept_no)
+);
+
+select * from dept_emp
+
+
+-- Create dept_manager table 
+
+DROP TABLE dept_manager
+
+CREATE TABLE dept_manager (
+ dept_no VARCHAR (10),
+ emp_no INT,
+ FOREIGN KEY (dept_no) REFERENCES departments(dept_no),
+ FOREIGN KEY (emp_no) REFERENCES employees(emp_no)
+);
+
+select * from dept_manager
+
+--Create titles table
+
+DROP TABLE titles
+
+CREATE TABLE titles (
+	title_id VARCHAR(10) NOT NULL,
+	title VARCHAR(20) NOT NULL,
+	FOREIGN KEY(emp_title_id) REFERENCES employees(emp_no)
+);
+
+select * from titles
